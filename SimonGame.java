@@ -98,10 +98,8 @@ public class SimonGame extends JFrame implements ActionListener
     {
         for(int i=0; i<playerAnswer.size();i++)
         {
-            System.out.println("nisud kos for loop");
             if(playerAnswer.get(i).equals(answerKey.get(i)))
             {
-                System.out.println("WOW");
             }
             else
             {
@@ -201,10 +199,14 @@ public class SimonGame extends JFrame implements ActionListener
             greenPane.setVisible(true);
             redPane.setVisible(true);
 
-            System.out.println("ben");
             addSequence();
             System.out.println("Random Colors: "+answerKey);
             StartGame();
+        }
+
+        if(e.getSource()==button2)
+        {
+            this.dispose();
         }
         
         
