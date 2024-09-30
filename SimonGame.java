@@ -9,6 +9,7 @@ public class SimonGame extends JFrame implements ActionListener
 {
     //data fields
     JLabel title = new JLabel();
+    Timer timer;
 
     JButton bluePane = new JButton();
     JButton redPane = new JButton();
@@ -64,13 +65,16 @@ public class SimonGame extends JFrame implements ActionListener
     {
         title.setText("Welcome to Simon Game");
         title.setBounds(100,-150,500,500);
+        
         title.setFont(new Font("Times New Roman",Font.PLAIN,30));
+
         this.add(button1);
         this.add(button2);
         this.add(title);
         button1.setVisible(true);
         button2.setVisible(true);
         title.setVisible(true);
+
     }
 
     public void StartGame()
@@ -79,6 +83,7 @@ public class SimonGame extends JFrame implements ActionListener
         this.add(yellowPane);
         this.add(redPane);
         this.add(greenPane);
+        FlashOut();
     }
 
     public void addSequence()
@@ -208,15 +213,68 @@ public class SimonGame extends JFrame implements ActionListener
         {
             this.dispose();
         }
-        
-        
-
-        
-        
-        
 
     }
 
+    public void FlashOut()
+    {
+        timer = new Timer(100, new ActionListener()
+        {
+            int x = 0;
+            public void actionPerformed(ActionEvent ae)
+            {
+                switch (answerKey.get(numClick)) {
+                    case "Blue":
+                        bluePane.setBackground(Color.BLACK);
+                        x++;
+                        if(x==10)
+                        {
+                            FlashIn();
+                            timer.stop();
+                        } 
+                        break;
+                    case "Red":
+                        redPane.setBackground(Color.BLACK);
+                        x++;
+                        if(x==10)
+                        {
+                            FlashIn();
+                            timer.stop();
+                        } 
+                        break;
+                    case "Yellow":
+                        yellowPane.setBackground(Color.BLACK);
+                        x++;
+                        if(x==10)
+                        {
+                            FlashIn();
+                            timer.stop();
+                        } 
+                        break;
+                    case "Green":
+                        greenPane.setBackground(Color.BLACK);
+                        x++;
+                        if(x==10)
+                        {
+                            FlashIn();
+                            timer.stop();
+                        }
+                        break;
+                        
+                }
+            }
+        });
+        timer.start();
+    }
 
+    public void FlashIn()
+    {
+        switch (answerKey.get(numClick)) {
+            case "Blue" -> bluePane.setBackground(Color.BLUE);
+            case "Red" -> redPane.setBackground(Color.RED);
+            case "Green" -> greenPane.setBackground(Color.GREEN);
+            case "Yellow" -> yellowPane.setBackground(Color.YELLOW);
+        }
+    }
 }
 
