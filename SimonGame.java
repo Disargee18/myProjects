@@ -1,15 +1,15 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
+import java.util.*;
 import javax.swing.*;
+import javax.swing.Timer;
+import java.util.TimerTask;
 
 public class SimonGame extends JFrame implements ActionListener
 {
     //data fields
     JLabel title = new JLabel();
-    Timer timer;
 
     JButton bluePane = new JButton();
     JButton redPane = new JButton();
@@ -23,6 +23,13 @@ public class SimonGame extends JFrame implements ActionListener
     int rounds = 1;
     boolean isGameOver = false;
     int numClick=0;
+    int countMain=0;
+
+    Timer timer;
+    Timer mainTimer;
+    int count=0;
+    TimerTask task;
+    Timer timer1,timer2,timer3,timer4;
 
 
     public SimonGame()
@@ -83,7 +90,8 @@ public class SimonGame extends JFrame implements ActionListener
         this.add(yellowPane);
         this.add(redPane);
         this.add(greenPane);
-        FlashOut();
+        // FlashOut();
+        // FlashSequence();
     }
 
     public void addSequence()
@@ -97,17 +105,21 @@ public class SimonGame extends JFrame implements ActionListener
             case 3 -> answerKey.add("Yellow");
             case 4 -> answerKey.add("Green");
         }
+        FlashSequence();
     }
 
-    public void validateAnswer()
+    public boolean validateAnswer()
     {
+        boolean isRight = true;
         for(int i=0; i<playerAnswer.size();i++)
         {
             if(playerAnswer.get(i).equals(answerKey.get(i)))
             {
+
             }
             else
             {
+                isRight=false;
                 numClick=0;
                 rounds=1;
                 playerAnswer.clear();
@@ -120,6 +132,7 @@ public class SimonGame extends JFrame implements ActionListener
             }
 
         }
+        return isRight;
     }
 
 
@@ -130,7 +143,7 @@ public class SimonGame extends JFrame implements ActionListener
         {
             playerAnswer.add("Blue");
             numClick++;
-            System.out.println("Player Answer: "+playerAnswer);
+            // System.out.println("Player Answer: "+playerAnswer);
             validateAnswer();
             if (numClick==rounds) 
             {
@@ -146,7 +159,7 @@ public class SimonGame extends JFrame implements ActionListener
         {
             playerAnswer.add("Green");
             numClick++;
-            System.out.println("Player Answer: "+playerAnswer);
+            // System.out.println("Player Answer: "+playerAnswer);
             validateAnswer();
             if (numClick==rounds) 
             {
@@ -162,7 +175,7 @@ public class SimonGame extends JFrame implements ActionListener
         {
             playerAnswer.add("Red");
             numClick++;
-            System.out.println("Player Answer: "+playerAnswer);
+            // System.out.println("Player Answer: "+playerAnswer);
             validateAnswer();
             if (numClick==rounds) 
             {
@@ -178,7 +191,7 @@ public class SimonGame extends JFrame implements ActionListener
         {
             playerAnswer.add("Yellow");
             numClick++;
-            System.out.println("Player Answer: "+playerAnswer);
+            // System.out.println("Player Answer: "+playerAnswer);
             validateAnswer();
             if (numClick==rounds) 
             {
@@ -216,65 +229,136 @@ public class SimonGame extends JFrame implements ActionListener
 
     }
 
-    public void FlashOut()
+    // public void FlashOut()
+    // {
+    //     timer = new Timer(100, new ActionListener()
+    //     {
+    //         int x = 0;
+    //         public void actionPerformed(ActionEvent ae)
+    //         {
+    //             switch (answerKey.get(numClick)) {
+    //                 case "Blue":
+    //                     bluePane.setBackground(Color.BLACK);
+    //                     x++;
+    //                     if(x==10)
+    //                     {
+    //                         FlashIn();
+    //                         // FlashSequence();
+    //                         timer.stop();
+    //                     } 
+    //                     break;
+    //                 case "Red":
+    //                     redPane.setBackground(Color.BLACK);
+    //                     x++;
+    //                     if(x==10)
+    //                     {
+    //                         FlashIn();
+    //                         // FlashSequence();
+    //                         timer.stop();
+    //                     } 
+    //                     break;
+    //                 case "Yellow":
+    //                     yellowPane.setBackground(Color.BLACK);
+    //                     x++;
+    //                     if(x==10)
+    //                     {
+    //                         FlashIn();
+    //                         // FlashSequence();
+    //                         timer.stop();
+    //                     } 
+    //                     break;
+    //                 case "Green":
+    //                     greenPane.setBackground(Color.BLACK);
+    //                     x++;
+    //                     if(x==10)
+    //                     {
+    //                         FlashIn();
+    //                         // FlashSequence();
+    //                         timer.stop();
+    //                     }
+    //                     break;
+                        
+    //             }
+    //         }
+    //     });
+    //     timer.start();
+    // }
+
+    // public void FlashIn()
+    // {
+    //     switch (answerKey.get(numClick)) {
+    //         case "Blue" -> bluePane.setBackground(Color.BLUE);
+    //         case "Red" -> redPane.setBackground(Color.RED);
+    //         case "Green" -> greenPane.setBackground(Color.GREEN);
+    //         case "Yellow" -> yellowPane.setBackground(Color.YELLOW);
+    //     }
+    // }
+
+    public void FlashSequence()
     {
-        timer = new Timer(100, new ActionListener()
+        mainTimer = new Timer(1000, new ActionListener() 
         {
-            int x = 0;
+            int i=0;
+            int x=0;
             public void actionPerformed(ActionEvent ae)
             {
-                switch (answerKey.get(numClick)) {
+                switch(answerKey.get(i))
+                {
                     case "Blue":
                         bluePane.setBackground(Color.BLACK);
-                        x++;
-                        if(x==10)
+                        timer1 = new Timer(1000, new ActionListener() 
                         {
-                            FlashIn();
-                            timer.stop();
-                        } 
+                            public void actionPerformed(ActionEvent e)
+                            {
+                                bluePane.setBackground(Color.blue);
+                                timer1.stop();
+                            }
+                        });timer1.start();
                         break;
                     case "Red":
                         redPane.setBackground(Color.BLACK);
-                        x++;
-                        if(x==10)
+                        timer2 = new Timer(1000, new ActionListener() 
                         {
-                            FlashIn();
-                            timer.stop();
-                        } 
-                        break;
-                    case "Yellow":
-                        yellowPane.setBackground(Color.BLACK);
-                        x++;
-                        if(x==10)
-                        {
-                            FlashIn();
-                            timer.stop();
-                        } 
+                            public void actionPerformed(ActionEvent e)
+                            {
+                                redPane.setBackground(Color.red);
+                                timer2.stop();
+                            }
+                        });timer2.start();
                         break;
                     case "Green":
                         greenPane.setBackground(Color.BLACK);
-                        x++;
-                        if(x==10)
+                        timer3 = new Timer(1000, new ActionListener() 
                         {
-                            FlashIn();
-                            timer.stop();
-                        }
+                            public void actionPerformed(ActionEvent e)
+                            {
+                                greenPane.setBackground(Color.green);
+                                timer3.stop();
+                            }
+                        });timer3.start();                        
                         break;
-                        
+                    case "Yellow":
+                        yellowPane.setBackground(Color.BLACK);
+                        timer4 = new Timer(1000, new ActionListener() 
+                        {
+                            public void actionPerformed(ActionEvent e)
+                            {
+                                yellowPane.setBackground(Color.yellow);
+                                timer4.stop();
+                            }
+                        });timer4.start();
+                        break;
                 }
+                i++;
+
+                if(i==answerKey.size())
+                {
+                    mainTimer.stop();
+                }
+                
             }
         });
-        timer.start();
-    }
-
-    public void FlashIn()
-    {
-        switch (answerKey.get(numClick)) {
-            case "Blue" -> bluePane.setBackground(Color.BLUE);
-            case "Red" -> redPane.setBackground(Color.RED);
-            case "Green" -> greenPane.setBackground(Color.GREEN);
-            case "Yellow" -> yellowPane.setBackground(Color.YELLOW);
-        }
+        mainTimer.start();
     }
 }
 
