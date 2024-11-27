@@ -5,13 +5,15 @@ import javax.swing.*;
 
 public class Dashboard extends JFrame implements ActionListener
 {
-    ImageIcon imageIcon = new ImageIcon("images\\output-onlinepngtools.png");
+    ImageIcon imageIcon = new ImageIcon("images\\kuan.png");
     JLabel label = new JLabel();
     JLabel label2 = new JLabel();
     JButton button1 = new JButton();
     JButton button2 = new JButton();
     JButton button = new JButton();
+    JButton hButton = new JButton();
     JLabel icon = new JLabel();
+    JPanel headPanel = new JPanel();
 
     public Dashboard()
     {
@@ -20,7 +22,7 @@ public class Dashboard extends JFrame implements ActionListener
         this.setVisible(true);
         this.setLayout(null);
         this.setResizable(false);
-        this.getContentPane().setBackground(new Color(0,9,75));
+        this.getContentPane().setBackground(Color.decode("#112A42"));
 
         label.setText("Equipment Borrowing System");
         label.setFont(new Font("Times New Roman", Font.BOLD, 50));
@@ -48,7 +50,21 @@ public class Dashboard extends JFrame implements ActionListener
 
         // button.setBounds(40, 30, 150, 150);
         icon.setIcon(imageIcon);
-        icon.setBounds(40, 30, 150, 150);
+        icon.setBounds(40, 30, 629, 150);
+
+        headPanel = new JPanel();
+        headPanel.setLayout(null);
+        headPanel.setBackground(Color.decode("#0B1C2C"));
+        headPanel.setBounds(0,0,1280,100);
+        
+
+        hButton = new JButton("HOME");
+        hButton.setBounds(1120,25,100,40);
+        hButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        hButton.setBackground(Color.BLACK);
+        hButton.setForeground(Color.WHITE);
+        headPanel.add(hButton);
+        hButton.addActionListener(this);
 
 
         this.add(label);
@@ -56,7 +72,7 @@ public class Dashboard extends JFrame implements ActionListener
         this.add(button1);
         this.add(button2);
         this.add(button);
-        this.add(icon);
+        this.add(headPanel);
        
         
     }
@@ -66,11 +82,13 @@ public class Dashboard extends JFrame implements ActionListener
     {
         if(e.getSource()==button1)
         {
-            new trial();
+            new Equipments();
+            this.dispose();
         }
         if(e.getSource()==button2)
         {
             new trial2();
+            this.dispose();
         }
     }
 }
