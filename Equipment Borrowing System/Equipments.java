@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -7,47 +8,61 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class Equipments extends JFrame implements ActionListener{
-    JFrame frame;
     JPanel headPanel;
     JPanel sideBar;
     JPanel listPanel;
     JPanel centerPanel;
+
+    JPanel inviPanel = new JPanel();
+    JPanel inviPanel2 = new JPanel();
+
     JPanel p1 = new JPanel();
     JPanel p2 = new JPanel();
     JPanel p3 = new JPanel();
     JPanel p4 = new JPanel();
+
     JLabel tLabel;
     JLabel lLabel;
     JLabel categLabel = new JLabel("CATEGORIES");
     JButton hButton;
     JButton borrowButton;
-    JButton p1b1 = new JButton("item 1");
-    JButton p1b2 = new JButton("item 2");
-    JButton p1b3 = new JButton("item 3");
-    JButton p1b4 = new JButton("item 4");
-    JButton p1b5 = new JButton("item 5");
-    JButton p1b6 = new JButton("item 6");
-    JButton p2b1 = new JButton("item 1");
-    JButton p2b2 = new JButton("item 2");
-    JButton p2b3 = new JButton("item 3");
-    JButton p2b4 = new JButton("item 4");
-    JButton p2b5 = new JButton("item 5");
-    JButton p2b6 = new JButton("item 6");
-    JButton p3b1 = new JButton("item 1");
-    JButton p3b2 = new JButton("item 2");
-    JButton p3b3 = new JButton("item 3");
-    JButton p3b4 = new JButton("item 4");
-    JButton p3b5 = new JButton("item 5");
-    JButton p3b6 = new JButton("item 6");
+    JButton restartButton = new JButton("RESTART");
+
+    // JButton p1b1 = new JButton("Basketball");
+    // JButton p1b2 = new JButton("Volleyball");
+    // JButton p1b3 = new JButton("Badminton Racket");
+    // JButton p1b4 = new JButton("Chessboard");
+    // JButton p1b5 = new JButton("Sepak Ball");
+    // JButton p1b6 = new JButton("UNO Cards");
+
+    // JLabel p1l1 = new JLabel("BasketBall");
+    // JLabel p1l2 = new JLabel("Volleyball");
+    // JLabel p1l3 = new JLabel("Badminton Racket");
+    // JLabel p1l4 = new JLabel("Chessboard");
+    // JLabel p1l5 = new JLabel("Sepak Ball");
+    // JLabel p1l6 = new JLabel("UNO Cards");
+
+    JLabel[] p1Items = new JLabel[6];
+    JButton[] panel1Items = new JButton[6];
+    String[] items1 = new String[]{"Basketball","Volleyball","Badminton","ChessBoard", "Cards", "UNO"};
+
+    JLabel[] p2Items = new JLabel[6];
+    JButton[] panel2Items = new JButton[6];
+    String[] items2 = new String[]{"Projector","Rulers","Puncher","Stapler","Speaker","Microphone"};
+
+    JLabel[] p3Items = new JLabel[6];
+    JButton[] panel3Items = new JButton[6];
+    String[] items3 = new String[]{"OOPROG Book","DIGILOG Book","Basic Calculus","HTML & CSS For Beginners","Basic Javascript","How to Accounting"};
+
     JButton c1 = new JButton("Sports & Games");
     JButton c2 = new JButton("Office Supplies");
     JButton c3 = new JButton("Books");
     final CardLayout card = new CardLayout();
 
     public Equipments(){
-        frame = new JFrame();
         this.setTitle("Boom! NaBorrow");
         this.setVisible(true);
         this.setSize(1280,720);
@@ -132,78 +147,20 @@ public class Equipments extends JFrame implements ActionListener{
         this.add(centerPanel);
         card.show(centerPanel, "four");
 
+        kuan();
+
+
         //panel 1
         p1.setLayout(new FlowLayout(FlowLayout.CENTER,15,60));
-        //p1.setBounds(200,100,780,620);
         p1.setBackground(Color.GREEN);
-        p1b1.setPreferredSize(new Dimension(240,200));
-        p1b2.setPreferredSize(new Dimension(240,200));
-        p1b3.setPreferredSize(new Dimension(240,200));
-        p1b4.setPreferredSize(new Dimension(240,200));
-        p1b5.setPreferredSize(new Dimension(240,200));
-        p1b6.setPreferredSize(new Dimension(240,200));
-
-        p1b1.setBackground(Color.white);
-        p1b2.setBackground(Color.white);
-        p1b3.setBackground(Color.white);
-        p1b4.setBackground(Color.white);
-        p1b5.setBackground(Color.white);
-        p1b1.setBackground(Color.white);
-
-        p2b1.setBackground(Color.white);
-        p2b2.setBackground(Color.white);
-        p2b3.setBackground(Color.white);
-        p2b4.setBackground(Color.white);
-        p2b5.setBackground(Color.white);
-        p2b6.setBackground(Color.white);
-
-        p3b1.setBackground(Color.white);
-        p3b2.setBackground(Color.white);
-        p3b3.setBackground(Color.white);
-        p3b4.setBackground(Color.white);
-        p3b5.setBackground(Color.white);
-        p3b6.setBackground(Color.white);
-
-        p1.add(p1b1);
-        p1.add(p1b2);
-        p1.add(p1b3);
-        p1.add(p1b4);
-        p1.add(p1b5);
-        p1.add(p1b6);
 
         //panel 2
         p2.setLayout(new FlowLayout(FlowLayout.CENTER,15,60));
-        //p2.setBounds(200,100,780,620);
         p2.setBackground(Color.PINK);
-        p2b1.setPreferredSize(new Dimension(240,200));
-        p2b2.setPreferredSize(new Dimension(240,200));
-        p2b3.setPreferredSize(new Dimension(240,200));
-        p2b4.setPreferredSize(new Dimension(240,200));
-        p2b5.setPreferredSize(new Dimension(240,200));
-        p2b6.setPreferredSize(new Dimension(240,200));
-        p2.add(p2b1);
-        p2.add(p2b2);
-        p2.add(p2b3);
-        p2.add(p2b4);
-        p2.add(p2b5);
-        p2.add(p2b6);
 
         //panel 3
         p3.setLayout(new FlowLayout(FlowLayout.CENTER,15,60));
-        //p3.setBounds(200,100,780,620);
         p3.setBackground(Color.YELLOW);
-        p3b1.setPreferredSize(new Dimension(240,200));
-        p3b2.setPreferredSize(new Dimension(240,200));
-        p3b3.setPreferredSize(new Dimension(240,200));
-        p3b4.setPreferredSize(new Dimension(240,200));
-        p3b5.setPreferredSize(new Dimension(240,200));
-        p3b6.setPreferredSize(new Dimension(240,200));
-        p3.add(p3b1);
-        p3.add(p3b2);
-        p3.add(p3b3);
-        p3.add(p3b4);
-        p3.add(p3b5);
-        p3.add(p3b6);
 
         p1.revalidate();
         p1.repaint();
@@ -218,6 +175,18 @@ public class Equipments extends JFrame implements ActionListener{
         listPanel.setBackground(Color.WHITE);
         this.add(listPanel);
 
+        inviPanel = new JPanel();
+        inviPanel.setBounds(190,60,100,385);
+        inviPanel.setBackground(Color.yellow);
+        listPanel.add(inviPanel);
+        
+
+        // inviPanel2.setBackground(Color.blue);
+        inviPanel2.setBounds(0,60,190,385);
+        inviPanel2.setLayout(new BoxLayout(inviPanel2, BoxLayout.Y_AXIS));
+        listPanel.add(inviPanel2);
+
+
         lLabel = new JLabel("LIST");
         lLabel.setBounds(75,10,90,50);
         lLabel.setFont(new Font("Comic Sans", Font.BOLD, 40));
@@ -225,13 +194,51 @@ public class Equipments extends JFrame implements ActionListener{
         listPanel.add(lLabel);
 
         borrowButton = new JButton("BORROW");
-        borrowButton.setBounds(60,450,130,40);
-        borrowButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        borrowButton.setBounds(30,470,100,40);
+        borrowButton.setFont(new Font("Comic Sans", Font.BOLD, 13));
         borrowButton.setBackground(new Color(0,25,57));
         borrowButton.setForeground(Color.WHITE);
+        borrowButton.addActionListener(this);
         listPanel.add(borrowButton);
 
+        restartButton.setBounds(130,470,100,40);
+        restartButton.setFont(new Font("Comic Sans", Font.BOLD, 13));
+        restartButton.setBackground(new Color(0,25,57));
+        restartButton.setForeground(Color.WHITE);
+        restartButton.addActionListener(this);
+        listPanel.add(restartButton);
 
+    }
+
+    //SETTING THE ARRAYS
+    public void kuan()
+    {
+        for (int i = 0; i < 6; i++) 
+        {
+            panel1Items[i] = new JButton(items1[i]);
+            panel1Items[i].setPreferredSize(new Dimension(240,200));
+            panel1Items[i].setBackground(Color.white);
+            p1.add(panel1Items[i]);
+
+            p1Items[i] = new JLabel(items1[i]);
+            panel1Items[i].addActionListener(this);
+
+            panel2Items[i] = new JButton(items2[i]);
+            panel2Items[i].setPreferredSize(new Dimension(240,200));
+            panel2Items[i].setBackground(Color.white);
+            p2.add(panel2Items[i]);
+
+            p2Items[i] = new JLabel(items2[i]);
+            panel2Items[i].addActionListener(this);
+
+            panel3Items[i] = new JButton(items3[i]);
+            panel3Items[i].setPreferredSize(new Dimension(240,200));
+            panel3Items[i].setBackground(Color.white);
+            p3.add(panel3Items[i]);
+
+            p3Items[i] = new JLabel(items3[i]);
+            panel3Items[i].addActionListener(this);
+        }
     }
 
 
@@ -259,9 +266,67 @@ public class Equipments extends JFrame implements ActionListener{
             card.show(centerPanel, "three");
             System.out.println("panel 3");
         }
+
+
+        //ITEM BUTTONS FUNCTIONALITY
+        for (int i = 0; i < 6; i++) 
+        {
+            if(e.getSource()==panel1Items[i])
+            {
+                inviPanel2.add(p1Items[i],BorderLayout.WEST);
+                p1Items[i].setFont(new Font("Comic Sans", Font.PLAIN, 20));
+                p1Items[i].setBorder(new EmptyBorder(10, 10, 10, 10)); 
+                p1Items[i].setAlignmentX(Component.LEFT_ALIGNMENT);
+                p1Items[i].setVisible(true);
+            }
+
+            if(e.getSource()==panel2Items[i])
+            {
+                inviPanel2.add(p2Items[i],BorderLayout.WEST);
+                p2Items[i].setFont(new Font("Comic Sans", Font.PLAIN, 20));
+                p2Items[i].setBorder(new EmptyBorder(10, 10, 10, 10)); 
+                p2Items[i].setAlignmentX(Component.LEFT_ALIGNMENT);
+                p2Items[i].setVisible(true);
+            }
+
+            if(e.getSource()==panel3Items[i])
+            {
+                inviPanel2.add(p3Items[i],BorderLayout.WEST);
+                p3Items[i].setFont(new Font("Comic Sans", Font.PLAIN, 20));
+                p3Items[i].setBorder(new EmptyBorder(10, 10, 10, 10)); 
+                p3Items[i].setAlignmentX(Component.LEFT_ALIGNMENT);
+                p3Items[i].setVisible(true);
+            }
+        }
+
         if(e.getSource()==hButton)
         {
             new Dashboard();
+            this.dispose();
+        }
+
+        if(e.getSource()==restartButton)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                listPanel.remove(p1Items[i]);
+                listPanel.remove(p2Items[i]);
+                listPanel.remove(p3Items[i]);
+
+                p1Items[i].setVisible(false);
+                p2Items[i].setVisible(false);
+                p3Items[i].setVisible(false);
+            }
+
+
+
+            listPanel.revalidate();
+            listPanel.repaint();
+        }
+
+        if(e.getSource()==borrowButton)
+        {
+            new trial2();
             this.dispose();
         }
     }
