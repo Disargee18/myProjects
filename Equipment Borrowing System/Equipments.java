@@ -31,20 +31,6 @@ public class Equipments extends JFrame implements ActionListener{
     JButton borrowButton;
     JButton restartButton = new JButton("RESTART");
 
-    // JButton p1b1 = new JButton("Basketball");
-    // JButton p1b2 = new JButton("Volleyball");
-    // JButton p1b3 = new JButton("Badminton Racket");
-    // JButton p1b4 = new JButton("Chessboard");
-    // JButton p1b5 = new JButton("Sepak Ball");
-    // JButton p1b6 = new JButton("UNO Cards");
-
-    // JLabel p1l1 = new JLabel("BasketBall");
-    // JLabel p1l2 = new JLabel("Volleyball");
-    // JLabel p1l3 = new JLabel("Badminton Racket");
-    // JLabel p1l4 = new JLabel("Chessboard");
-    // JLabel p1l5 = new JLabel("Sepak Ball");
-    // JLabel p1l6 = new JLabel("UNO Cards");
-
     JLabel[] p1Items = new JLabel[6];
     JButton[] panel1Items = new JButton[6];
     String[] items1 = new String[]{"Basketball","Volleyball","Badminton","ChessBoard", "Cards", "UNO"};
@@ -63,7 +49,7 @@ public class Equipments extends JFrame implements ActionListener{
     final CardLayout card = new CardLayout();
 
     public Equipments(){
-        this.setTitle("Boom! NaBorrow");
+        this.setTitle("Equipment Borrowing System");
         this.setVisible(true);
         this.setSize(1280,720);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -326,7 +312,7 @@ public class Equipments extends JFrame implements ActionListener{
 
         if(e.getSource()==borrowButton)
         {
-            new trial2();
+            new InfoContainer();
             this.dispose();
         }
     }

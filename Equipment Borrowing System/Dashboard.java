@@ -14,6 +14,7 @@ public class Dashboard extends JFrame implements ActionListener
     JButton hButton = new JButton();
     JLabel icon = new JLabel();
     JPanel headPanel = new JPanel();
+    JLabel tLabel = new JLabel("Boom! NaBorrow");
 
     public Dashboard()
     {
@@ -22,6 +23,7 @@ public class Dashboard extends JFrame implements ActionListener
         this.setVisible(true);
         this.setLayout(null);
         this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setBackground(Color.decode("#112A42"));
 
         label.setText("Equipment Borrowing System");
@@ -56,6 +58,11 @@ public class Dashboard extends JFrame implements ActionListener
         headPanel.setLayout(null);
         headPanel.setBackground(Color.decode("#0B1C2C"));
         headPanel.setBounds(0,0,1280,100);
+
+        tLabel.setBounds(50,20,400,50);
+        tLabel.setFont(new Font("Comic Sans", Font.BOLD, 40));
+        tLabel.setForeground(Color.WHITE);
+        headPanel.add(tLabel);
         
 
         hButton = new JButton("HOME");
