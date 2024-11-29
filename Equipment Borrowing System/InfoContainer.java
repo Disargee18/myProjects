@@ -1,8 +1,12 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
+
 import javax.swing.*;
 
 public class InfoContainer extends JFrame implements ActionListener
+
 {
     CardLayout card = new CardLayout();
 
@@ -11,6 +15,7 @@ public class InfoContainer extends JFrame implements ActionListener
     JPanel panel1 = new JPanel();
     JPanel panel2 = new JPanel();
     JPanel formPanel = new JPanel();
+    JPanel confirmPanel = new JPanel();
 
     JLabel tLabel = new JLabel("Boom! Naborrow");
     JLabel name = new JLabel("Name:");
@@ -18,6 +23,11 @@ public class InfoContainer extends JFrame implements ActionListener
     JLabel email = new JLabel("Email Address:");
     JLabel phone = new JLabel("Contact No:");
     JLabel title = new JLabel("Borrower's Information Form");
+    JLabel name2 = new JLabel("Name:");
+    JLabel idNum2 = new JLabel("ID No:");
+    JLabel email2 = new JLabel("Email Address:");
+    JLabel phone2 = new JLabel("Contact No:");
+    JLabel title2 = new JLabel("Confirm Information");
 
     JTextField nametf = new JTextField();
     JTextField idNumtf = new JTextField();
@@ -26,8 +36,20 @@ public class InfoContainer extends JFrame implements ActionListener
 
     JButton hButton = new JButton("HOME");
     JButton enter = new JButton("Enter");
+    JButton proceed = new JButton("Proceed");
+    JButton undo = new JButton("Edit");
 
     JScrollPane scrollPane = new JScrollPane(formPanel);
+    JScrollPane scrollPane2 = new JScrollPane(confirmPanel);
+    JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+    JScrollBar verticalScrollBar2 = scrollPane.getVerticalScrollBar();
+
+    ArrayList<String> storeName = new ArrayList<String>();
+    ArrayList<String> storeID = new ArrayList<String>();
+    ArrayList<String> storeEmail = new ArrayList<String>();
+    ArrayList<String> storePhone = new ArrayList<String>();
+
+    String nameText,iDText,emailText,phoneText;
 
     public InfoContainer()
     {
@@ -44,23 +66,30 @@ public class InfoContainer extends JFrame implements ActionListener
         title.setFont(new Font("Times New Roman", Font.BOLD, 50));
         title.setForeground(Color.white);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+        title.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
 
+        title2.setFont(new Font("Times New Roman", Font.BOLD, 50));
+        title2.setForeground(Color.white);
+        title2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title2.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+
+        //PANEL1
         panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
-        panel1.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
+        panel1.setBorder(BorderFactory.createEmptyBorder(10, 20, 30, 20));
         panel1.setBackground(Color.decode("#112A42"));
 
         formPanel.setBackground(Color.decode("#0B1C2C"));
         formPanel.setLayout(null);
-        formPanel.setPreferredSize(new Dimension(1280, 600));  
+        formPanel.setPreferredSize(new Dimension(1000,620));
+        // formPanel.setMinimumSize(new Dimension(1000,550));
+        // formPanel.setMaximumSize(new Dimension(1000,550));
 
-        
         formPanel.add(name);
         formPanel.add(nametf);
         name.setBounds(20, 0, 100, 70);
         name.setForeground(Color.white);
         name.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        nametf.setBounds(10, 65, 1190, 50);
+        nametf.setBounds(10, 65, 950, 50);
         nametf.setBackground(Color.lightGray);
 
         formPanel.add(idNum);
@@ -68,7 +97,7 @@ public class InfoContainer extends JFrame implements ActionListener
         idNum.setBounds(20, 120, 500, 70);
         idNum.setForeground(Color.white);
         idNum.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        idNumtf.setBounds(10, 185, 1190, 50);
+        idNumtf.setBounds(10, 185, 950, 50);
         idNumtf.setBackground(Color.lightGray);
 
 
@@ -77,7 +106,7 @@ public class InfoContainer extends JFrame implements ActionListener
         email.setBounds(20, 250, 500, 70);
         email.setForeground(Color.white);
         email.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        emailtf.setBounds(10, 315, 1190, 50);
+        emailtf.setBounds(10, 315, 950, 50);
         emailtf.setBackground(Color.lightGray);
 
 
@@ -86,29 +115,81 @@ public class InfoContainer extends JFrame implements ActionListener
         phone.setBounds(20, 380, 500, 70);
         phone.setForeground(Color.white);
         phone.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        phonetf.setBounds(10, 445, 1190, 50);
+        phonetf.setBounds(10, 445, 950, 50);
         phonetf.setBackground(Color.lightGray);
 
 
         formPanel.add(enter);
-        enter.setBounds(410,530,400,50);
+        enter.setBounds(300,530,400,50);
         enter.setBackground(Color.white);
         enter.setForeground(Color.BLACK);
+        enter.addActionListener(this);  
 
-
-        scrollPane.setPreferredSize(new Dimension(1280, 600));  
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
-        JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
-        verticalScrollBar.setUnitIncrement(20);  // Set unit increment for fine scroll (small scroll)
-        verticalScrollBar.setBlockIncrement(100);
-
+        scrollPane.setPreferredSize(new Dimension(1000, 420));
+        scrollPane.setMinimumSize(new Dimension(1000, 420));
+        scrollPane.setMaximumSize(new Dimension(1000, 420));
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        verticalScrollBar.setUnitIncrement(20); 
+        verticalScrollBar.setBlockIncrement(80);
+        scrollPane.setViewportView(formPanel);
 
         panel1.add(title);
         panel1.add(scrollPane);
+        // panel1.add(formPanel);   
 
-        panel2.setLayout(null);
-        panel2.setBackground(Color.blue);
+        //PANEL 2
+        panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+        panel2.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
+        panel2.setBackground(Color.decode("#112A42"));
+
+        confirmPanel.setBackground(Color.decode("#0B1C2C"));
+        confirmPanel.setLayout(null);
+        confirmPanel.setPreferredSize(new Dimension(1000, 460));  
+        confirmPanel.setMinimumSize(new Dimension(1180,460));
+        confirmPanel.setMaximumSize(new Dimension(1180,460));
+
+        confirmPanel.add(name2);
+        name2.setBounds(20, 0, 1000, 70);
+        name2.setForeground(Color.white);
+        name2.setFont(new Font("Times New Roman", Font.BOLD, 30));
+
+        confirmPanel.add(idNum2);
+        idNum2.setBounds(20, 100, 500, 70);
+        idNum2.setForeground(Color.white);
+        idNum2.setFont(new Font("Times New Roman", Font.BOLD, 30));
+
+
+        confirmPanel.add(email2);
+        email2.setBounds(20, 200, 500, 70);
+        email2.setForeground(Color.white);
+        email2.setFont(new Font("Times New Roman", Font.BOLD, 30));
+
+        confirmPanel.add(phone2);
+        phone2.setBounds(20, 300, 500, 70);
+        phone2.setForeground(Color.white);
+        phone2.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        
+        confirmPanel.add(proceed);
+        proceed.setBounds(390,400,200,40);
+        proceed.setBackground(Color.white);
+        proceed.setForeground(Color.BLACK);
+        proceed.addActionListener(this);
+
+        confirmPanel.add(undo);
+        undo.setBounds(690,400,200,40);
+        undo.setBackground(Color.white);
+        undo.setForeground(Color.BLACK);
+        undo.addActionListener(this);
+
+        // scrollPane2.setPreferredSize(new Dimension(1280, 600));  
+        // scrollPane2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+        // scrollPane2.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); 
+        // verticalScrollBar2.setUnitIncrement(20);  // Set unit increment for fine scroll (small scroll)
+        // verticalScrollBar2.setBlockIncrement(100);
+
+        panel2.add(title2);
+        panel2.add(confirmPanel);
 
         cardPanel.add(panel1, "one");
         cardPanel.add(panel2, "two");
@@ -138,6 +219,55 @@ public class InfoContainer extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) 
     {
         if(e.getSource()==hButton)
+        {
+            new Dashboard();
+            this.dispose();
+        }
+        if(e.getSource()==enter)
+        {
+            nameText = nametf.getText();
+            iDText = idNumtf.getText();
+            emailText = emailtf.getText();
+            phoneText = phonetf.getText();
+
+            card.show(cardPanel, "two");
+
+            // if(nameText.isEmpty()||iDText.isEmpty()||emailText.isEmpty()||phoneText.isEmpty())
+            // {
+            //     JOptionPane.showMessageDialog(this, "Please Input All Fields","Error",JOptionPane.ERROR_MESSAGE);
+            // }
+            // else
+            // {
+            //     card.show(cardPanel, "two");
+            // }
+            // ||storeID.isEmpty()||storeEmail.isEmpty()||storePhone.isEmpty()
+            storeName.add(nametf.getText());
+            storeID.add(idNumtf.getText());
+            storeEmail.add(emailtf.getText());
+            storePhone.add(phonetf.getText()); 
+
+            name2.setText("Name: " + storeName.get(storeName.size() - 1)); 
+            idNum2.setText("ID No: " + storeID.get(storeID.size() - 1));
+            email2.setText("Email Address: " + storeEmail.get(storeEmail.size() - 1));
+            phone2.setText("Contact No: " + storePhone.get(storePhone.size() - 1));   
+        }
+
+        if(e.getSource()==undo)
+        {
+            card.show(cardPanel, "one");
+            nameText = null;
+            iDText = null;
+            emailText = null;
+            phoneText = null;
+
+            storeName.remove(storeName.size()-1);
+            storeID.remove(storeID.size()-1);
+            storeEmail.remove(storeEmail.size()-1);
+            storePhone.remove(storePhone.size()-1);
+            
+        }
+
+        if(e.getSource()==proceed)
         {
             new Dashboard();
             this.dispose();
