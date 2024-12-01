@@ -64,7 +64,6 @@ public class Dashboard extends JFrame implements ActionListener
         tLabel.setForeground(Color.WHITE);
         headPanel.add(tLabel);
         
-
         hButton = new JButton("HOME");
         hButton.setBounds(1120,25,100,40);
         hButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
@@ -73,15 +72,12 @@ public class Dashboard extends JFrame implements ActionListener
         headPanel.add(hButton);
         hButton.addActionListener(this);
 
-
         this.add(label);
         this.add(label2);
         this.add(button1);
         this.add(button2);
         this.add(button);
         this.add(headPanel);
-       
-        
     }
 
     @Override
@@ -92,10 +88,14 @@ public class Dashboard extends JFrame implements ActionListener
             new Equipments();
             this.dispose();
         }
+
         if(e.getSource()==button2)
         {
-            new trial2();
+            new History();
             this.dispose();
         }
+
+        
+
     }
 }

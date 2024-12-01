@@ -1,0 +1,9 @@
+Basketball
+Volleyball
+Badminton
+Basketball
+Volleyball
+Badminton
+RESET action triggered. Clearing all items from the list.
+RESET action triggered. Clearing all items from the list.
+RESET action triggered. Clearing all items from the list.
